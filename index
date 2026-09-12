@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studentski servis</title>
+<style>
+  :root {
+    --navy: #1b2a52;
+    --navy-dark: #16213f;
+    --ink: #1c1c1c;
+    --ink-soft: #6b6b6b;
+    --line: #e2e2e2;
+    --link: #3f4fb0;
+    --paper: #ffffff;
+    --bg: #ffffff;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Segoe UI", Arial, sans-serif;
+  }
+
+  /* Header */
+  header.topbar {
+    background: var(--navy);
+    color: #fff;
+    padding: 22px 48px 0;
+  }
+
+  .brand-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 20px;
+  }
+
+  .brand-row .glyph {
+    width: 44px;
+    height: 40px;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .brand-row .glyph svg { width: 100%; height: 100%; }
+
+  .brand-row .wordmark {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+  }
+
+  .brand-row .reg {
+    font-size: 12px;
+    vertical-align: super;
+    opacity: 0.8;
+    margin-left: 2px;
+  }
+
+  nav.mainnav {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding: 16px 0;
+    font-size: 15px;
+    position: relative;
+  }
+
+  nav.mainnav a {
+    color: rgba(255,255,255,0.92);
+    text-decoration: none;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  nav.mainnav a.active {
+    position: relative;
+  }
+
+  nav.mainnav a.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -17px;
+    height: 2px;
+    background: #6fa8ff;
+  }
+
+  nav.mainnav .caret {
+    font-size: 10px;
+    opacity: 0.7;
+    margin-top: 1px;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  .servisi-toggle {
+    background: transparent;
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    color: var(--ink);
+    min-width: 260px;
+    border: 1px solid var(--line);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    z-index: 5;
+    display: none;
+    padding: 10px 0;
+    margin-top: 12px;
+  }
+
+  .dropdown.open {
+    display: block;
+  }
+
+  .dropdown a,
+  nav.mainnav .dropdown a {
+    display: block;
+    padding: 12px 22px;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 15px;
+  }
+
+  .dropdown a:hover,
+  nav.mainnav .dropdown a:hover {
+    text-decoration: underline;
+  }
+
+  /* Page content */
+  main {
+    padding: 56px 48px;
+  }
+
+  main h1 {
+    font-size: 44px;
+    font-weight: 800;
+    margin: 0 0 44px;
+  }
+
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+
+  .col-card {
+    border: 1px solid var(--line);
+    border-radius: 3px;
+  }
+
+  .col-head {
+    background: #f2f2f2;
+    padding: 18px 22px;
+    font-size: 20px;
+    font-weight: 700;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .col-body {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .col-body a {
+    color: var(--link);
+    text-decoration: none;
+    font-size: 16px;
+  }
+
+  .col-body a:hover { text-decoration: underline; }
+
+  .col-body span.plain {
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  @media (max-width: 1000px) {
+    .columns { grid-template-columns: repeat(2, 1fr); }
+    header.topbar { padding: 20px 24px 0; }
+    main { padding: 36px 24px; }
+  }
+
+  @media (max-width: 620px) {
+    .columns { grid-template-columns: 1fr; }
+    nav.mainnav { flex-wrap: wrap; gap: 16px 24px; }
+    main h1 { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand-row">
+    <div class="glyph">
+      <svg viewBox="0 0 64 64" fill="none">
+        <g stroke="#ffffff" stroke-width="7" stroke-linecap="round">
+          <path d="M32 32 C 24 24, 24 14, 32 14 C 40 14, 40 24, 32 32"/>
+          <path d="M32 32 C 40 40, 50 40, 50 32 C 50 24, 40 24, 32 32"/>
+          <path d="M32 32 C 40 40, 40 50, 32 50 C 24 50, 24 40, 32 32"/>
+          <path d="M32 32 C 24 40, 14 40, 14 32 C 14 24, 24 24, 32 32"/>
+        </g>
+      </svg>
+    </div>
+    <div class="wordmark">Studentski servis<span class="reg">®</span></div>
+  </div>
+
+  <nav class="mainnav">
+    <a href="#" class="active">Servis</a>
+    <a href="#">Spiskovi <span class="caret">▾</span></a>
+    <a href="#">Rasporedi <span class="caret">▾</span></a>
+    <a href="#">Online nastava <span class="caret">▾</span></a>
+    <a href="#">Upis godine <span class="caret">▾</span></a>
+    <a href="#">Disciplinske mere</a>
+    <a href="#">Anketa</a>
+    <a href="#">Osiguranje</a>
+    <a href="#">Praksa i posao <span class="caret">▾</span></a>
+    <a href="#">Parlament</a>
+    <div class="nav-item">
+      <a href="#" class="servisi-toggle" id="servisiToggle">Servisi <span class="caret" id="servisiCaret">▾</span></a>
+      <div class="dropdown" id="servisiDropdown">
+        <a href="https://zaxaromy.github.io/raf-student-servis/">Servis za studente</a>
+        <a href="#">Nastavnički web servis</a>
+        <a href="#">Uredjivanje Google naloga</a>
+        <a href="#">Maillista</a>
+        <a href="#">RAF web mail</a>
+        <a href="#">Materijali</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('servisiToggle');
+  const dropdown = document.getElementById('servisiDropdown');
+  const caret = document.getElementById('servisiCaret');
+
+  toggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const isOpen = dropdown.classList.toggle('open');
+    caret.textContent = isOpen ? '▴' : '▾';
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target) && e.target !== toggle) {
+      dropdown.classList.remove('open');
+      caret.textContent = '▾';
+    }
+  });
+</script>
+
+<main>
+  <h1>Studentski servis</h1>
+
+  <div class="columns">
+    <div class="col-card">
+      <div class="col-head">Ispitni rokovi</div>
+      <div class="col-body">
+        <a href="#">Januarski rok - 25/26</a>
+        <a href="#">Februarski rok - 25/26</a>
+        <a href="#">Junski rok - 25/26</a>
+        <a href="#">Julski rok - 25/26</a>
+        <a href="#">Avgustovski rok - 25/26</a>
+        <a href="#">Septembarski rok - 25/26</a>
+      </div>
+    </div>
+
+    <div class="col-card">
+      <div class="col-head">Kolokvijumske nedelje</div>
+      <div class="col-body">
+        <a href="#">I kolokvijumska nedelja 2025/2026</a>
+        <a href="#">II kolokvijumska nedelja 2025/2026</a>
+        <a href="#">III kolokvijumska nedelja 2025/2026</a>
+        <a href="#">IV kolokvijumska nedelja 2025/2026</a>
+      </div>
+    </div>
+
+    <div class="col-card">
+      <div class="col-head">Servisi</div>
+      <div class="col-body">
+        <a href="#">Servis za studente</a>
+        <a href="#">Nastavnički web servis</a>
+        <a href="#">Uredjivanje Google naloga</a>
+        <a href="#">Maillista</a>
+        <a href="#">Web mail</a>
+        <a href="#">Materijali</a>
+      </div>
+    </div>
+
+    <div class="col-card">
+      <div class="col-head">Plaćanje školarine</div>
+      <div class="col-body">
+        <span class="plain">I rata - prilikom upisa</span>
+        <span class="plain">II rata - do 31. 12.</span>
+        <span class="plain">III rata - do 31. 03.</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>
